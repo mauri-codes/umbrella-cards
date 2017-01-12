@@ -1,0 +1,16 @@
+node_modules
+!/client/node_modules/core-js/client/shim.min.js
+!/client/node_modules/zone.js/dist/zone.js
+!/client/node_modules/reflect-metadata/Reflect.js
+!/client/node_modules/systemjs/dist/system.src.js
+.idea
+client/.idea
+client/jspm_packages
+client/npm-debug.*
+client/link-checker-results.txt
+client/app/**/*.js
+client/*.js.map
+client/e2e/**/*.js
+client/e2e/**/*.js.map
+client/_test-output
+client/_temp

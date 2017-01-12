@@ -1,0 +1,29 @@
+{
+  "name": "umbrella-cards",
+  "private": true,
+  "description": "Flashcards application",
+  "scripts": {
+    "start": "node app",
+    "gulp": "gulp"
+  },
+  "author": "Mauricio Alarcon",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "mongoose": "^4.6.8",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.0.0"
+  },
+  "engines": {
+    "node": "6.9.x"
+  }
+}
