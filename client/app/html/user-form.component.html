@@ -1,0 +1,38 @@
+<div class="container" [hidden]="userForm.submitted">
+  <h1>Sign up</h1>
+  <form (ngSubmit)="newUser()" #userForm="ngForm">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" required
+             [(ngModel)] = "username" name="username" #f_username="ngModel" >
+      <div [hidden]="f_username.valid || f_username.pristine"
+           class="alert alert-danger">
+        username is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password"
+             required [(ngModel)] = "password" name="password" #f_password="ngModel">
+      <div [hidden]="f_password.valid || f_password.pristine"
+           class="alert alert-danger">
+        Password is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">E-mail</label>
+      <input type="email" class="form-control" id="email"
+             required [(ngModel)] = "email" name="email" #f_email="ngModel">
+      <div [hidden]="f_email.valid || f_email.pristine"
+           class="alert alert-danger">
+        Password is required
+      </div>
+    </div>
+    <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">Submit</button>
+    <!--
+      just another way to do it, without the ngsubmit bind
+    <button type="submit" class="btn btn-default" (click)="newUser()">Submit</button>-->
+  </form>
+</div>
+<div class="response" [hidden] = "!userForm.submitted">{{response}}</div>
+<!--*ngIf = "!toggle" with some help in the component-->

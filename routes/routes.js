@@ -1,6 +1,8 @@
-var express = require("express");
-var path = require("path");
-var User = require("../models/user");
+var express =       require("express");
+var path =          require("path");
+var mailsender =    require("./mailSender");
+
+var User =          require("../models/user");
 
 var router = express.Router();
 
@@ -20,7 +22,52 @@ router.get('/getusers', function (req, res) {
         if(err){ }
         res.json(user);
     });
-    // res.json({hi:"hi"});
+    console.log("hi world");
+});
+router.post("/signup", function (req, res) {
+    //console.log(mailsender.randomString(30));
+    var username = req.body.username;
+    var email    = req.body.email;
+    var password = req.body.password;
+    var veriCode  = mailsender.randomString(30); //verification code
+    User.findOne({ $or:[ {username:username}, {email:email} ]}, function (err, user) {
+        if(err)
+            res.json({ response: "error", error: err});
+        else if(user) {
+            if (user.username == username)
+                res.json({response: "error", error: "user already exists"});
+            else if (user.email == email)
+                res.json({response: "error", error: "email in use"});
+            else
+                res.json({response: "error", error: "unknown error."});
+        }else{
+            var newUser = new User({
+                username: username,
+                password: password,
+                email: email,
+                validated: veriCode
+            });
+            newUser.save();
+            mailsender.sendEmail("confirm your account clicking in the folowing link --> " +
+                "http://localhost:3000/verify?code=" + veriCode,
+                email, "confirm your account");
+            res.json({response: "success"});
+        }
+    });
+});
+router.get("/verify/:code", function (req,res) {
+    var code = req.params.code;
+    //alternatively
+    //http://localhost:3000/verify?code=123
+    //var code = req.query.code; with router.get("/verify")
+    User.findOneAndUpdate(
+        {validated: code}, //search for such code amongst users
+        {validated: "yes"}, //change to this if found
+        function (err, user) {
+            if(err)                 res.json({response: "error", detail: err});
+            else if(user == null)   res.json({response: "error", detail: "incorrect url"});
+            else                    res.json({response: "success", user: user});
+        });
 });
 
 //************************************************************************
@@ -30,5 +77,6 @@ router.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, '../client', 'index.html'));
 });
 
+// to send emails
 
 module.exports = router;

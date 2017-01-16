@@ -1,0 +1,10 @@
+$valid-color: #42A948;
+$invalid-color: #a94442;
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid $valid-color; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid $invalid-color; /* red */
+}

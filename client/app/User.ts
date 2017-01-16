@@ -4,9 +4,9 @@ export class User {
   email: string;
   password: string;
   displayName: string;
-  constructor(us: string, rl: string, el: string){
-    this.username = us;
-    this.role     = rl;
-    this.email    = el;
+  constructor(us: string, el: string, rl: string){
+    this.username       = us;
+    this.email          = el;
+    this.password       = rl;
   }
 }
