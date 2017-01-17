@@ -1,0 +1,19 @@
+$table-border: rgb(0, 77, 77);
+$thead: rgb(0, 120, 120);
+$thead-text: rgb(242, 242, 242);
+$tr-hover: rgb(194, 214, 214);
+.table{
+  border-color: $table-border;
+  border-width: 3px;
+}
+thead{
+  background-color: $thead;
+  color: $thead-text;
+}
+tbody > tr:hover{
+  background-color: $tr-hover;
+  cursor: default;
+}
+.odd{
+  background-color: $thead-text;
+}

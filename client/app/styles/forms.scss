@@ -1,5 +1,8 @@
 $valid-color: #42A948;
 $invalid-color: #a94442;
+$submit-color: rgb(0, 102, 102);
+$submit-hover-color: rgb(0,80,80);
+
 
 .ng-valid[required], .ng-valid.required  {
   border-left: 5px solid $valid-color; /* green */
@@ -7,4 +10,12 @@ $invalid-color: #a94442;
 
 .ng-invalid:not(form)  {
   border-left: 5px solid $invalid-color; /* red */
+}
+.submit{
+  background-color: $submit-color;
+  color: white;
+  font-weight: bold;
+  &:hover, &:active{
+    background-color: $submit-hover-color;
+  }
 }

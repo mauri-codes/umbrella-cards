@@ -4,19 +4,27 @@
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text" class="form-control" id="username" required
-             [(ngModel)] = "username" name="username" #f_username="ngModel" >
+             [(ngModel)] = "username" name="username" #f_username="ngModel" pattern="[a-zA-Z0-9]*">
       <div [hidden]="f_username.valid || f_username.pristine"
-           class="alert alert-danger">
+           class="alert alert-danger" *ngIf="username">
+        username can only contain letters and numbers
+      </div>
+      <div [hidden]="f_username.valid || f_username.pristine"
+           class="alert alert-danger" *ngIf="!username">
         username is required
       </div>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
       <input type="password" class="form-control" id="password"
-             required [(ngModel)] = "password" name="password" #f_password="ngModel">
+             required [(ngModel)] = "password" name="password" #f_password="ngModel" pattern="[ -~]{6,18}">
       <div [hidden]="f_password.valid || f_password.pristine"
-           class="alert alert-danger">
+           class="alert alert-danger" *ngIf="!password">
         Password is required
+      </div>
+      <div [hidden]="f_password.valid || f_password.pristine"
+           class="alert alert-danger" *ngIf="password">
+        Password needs to be at least 6 and at most 18 characters long
       </div>
     </div>
     <div class="form-group">
@@ -28,11 +36,10 @@
         Password is required
       </div>
     </div>
-    <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">Submit</button>
+    <button type="submit" class="btn btn-default submit" [disabled]="!userForm.form.valid">Submit</button>
     <!--
       just another way to do it, without the ngsubmit bind
     <button type="submit" class="btn btn-default" (click)="newUser()">Submit</button>-->
   </form>
 </div>
 <div class="response" [hidden] = "!userForm.submitted">{{response}}</div>
-<!--*ngIf = "!toggle" with some help in the component-->
