@@ -5,7 +5,7 @@ import { UserService } from './user.service';
   moduleId: module.id,
   selector: 'user',
   providers: [ UserService ],
-  templateUrl: './html/users.component.html'
+  templateUrl: '../html/users.component.html'
 })
 
 export class UsersComponent {

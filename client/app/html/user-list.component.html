@@ -14,13 +14,13 @@
     </thead>
     <tbody>
     <tr *ngFor="let user of users; let index=index; let odd=odd" [ngClass]="{odd: odd}">
-      <th>{{index+1}}</th>
+      <th *ngIf="users[index]">{{index+1}}</th>
       <td>{{user.username}}</td>
       <td>{{user.email}}</td>
       <td>{{user.createdAt}}</td>
       <td *ngIf="user.validated">yes</td>
       <td *ngIf="!user.validated">no</td>
-      <td><button class="btn btn-danger" (click)="deleteUser(); $event.stopPropagation()">delete</button></td>
+      <td><button class="btn btn-danger" (click)="deleteUser(user.username, index); $event.stopPropagation()">delete</button></td>
     </tr>
     </tbody>
   </table>

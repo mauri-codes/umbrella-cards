@@ -25,6 +25,9 @@ export class UserService{
     // let headers = new Headers({ 'Content-Type': 'application/json' });
     // let options = new RequestOptions({ headers: headers });
     let data = JSON.parse(JSON.stringify(newuser)); //converts to string and then to JSON
-    return this.http.post('http://localhost:3000/signup', data).map((r:Response) => r.json());
+    return this.http.post('/signup', data).map((r:Response) => r.json());
+  }
+  deleteUser(x:string): Observable<User>{
+    return this.http.post('/deleteuser', {username: x}).map(( r : Response ) => r.json() );
   }
 }

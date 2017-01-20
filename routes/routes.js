@@ -69,6 +69,14 @@ router.get("/verify/:code", function (req,res) {
             else                    res.json({response: "success", user: user});
         });
 });
+router.post("/deleteuser", function (req, res) {
+    var username = req.body.username;
+    console.log();
+    User.remove({username: username}, function (err) {
+        if(err)     res.json({response: "error", error: err});
+        else        res.json({response: "success"});
+    });
+});
 
 //************************************************************************
 //this one redirects every non recognized route to the angular client side
