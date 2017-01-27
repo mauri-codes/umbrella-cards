@@ -6,7 +6,7 @@ var userSchema = mongoose.Schema({
     password:       { type: String, required: true },
     createdAt:      { type: Date, default: Date.now },
     displayName:    { type: String },
-    role:           { type: String },
+    role:           { type: String, enum: ['client', 'manager', 'admin'], default: 'client' },
     email:          { type: String, required: true, unique: true},
     validated:      { type: String }
 });

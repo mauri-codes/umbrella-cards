@@ -13,11 +13,16 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class UserService{
-  private usersUrl = '/getusers';
 
   constructor(private http: Http) { }
   getUsers(): Observable<User[]>{
-    return this.http.get(this.usersUrl).map((r:Response) => r.json() as User[]);
+    return this.http.get("/getusers").map((r:Response) => r.json() as User[]);
+  }
+  getUser(username: string){
+    return this.http.get("/getuser/"+username).map((r:Response) => r.json());
+  }
+  getUser2(username: string){
+    return "hi world";
   }
   newUser(newuser: User):Observable<User>{
     // some examples added options as a third parameter for post request,

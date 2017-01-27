@@ -14,4 +14,4 @@ client/e2e/**/*.js
 client/e2e/**/*.js.map
 client/_test-output
 client/_temp
-/routes/mailSender.js
+main.js

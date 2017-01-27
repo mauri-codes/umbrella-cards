@@ -5,6 +5,7 @@ import { FormsModule }            from '@angular/forms';
 import { UserListComponent }      from './user-list.component';
 import { UserFormComponent }      from './user-form.component'
 import { UsersComponent }         from './users.component';
+import { UserDetailComponent}     from './user-detail.component';
 
 import { UserRoutingModule }      from './users-routing.module';
 
@@ -17,7 +18,8 @@ import { UserRoutingModule }      from './users-routing.module';
   declarations: [
     UserListComponent,
     UserFormComponent,
-    UsersComponent
+    UsersComponent,
+    UserDetailComponent
   ]
 })
 export class UsersModule {}

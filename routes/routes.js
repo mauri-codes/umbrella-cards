@@ -1,8 +1,12 @@
-var express =       require("express");
-var path =          require("path");
-var mailsender =    require("./mailSender");
+var express         = require("express");
+var path            = require("path");
+var mailsender      = require("./mailSender");
+var passport        = require("passport");
+var jwt             = require("passport-jwt");
 
-var User =          require("../models/user");
+
+var User        = require("../models/user");
+var config      = require("../main");
 
 var router = express.Router();
 
@@ -17,13 +21,27 @@ router.get("/", function (req, res, next) {
     //res.json({"his": "history"});
     next();
 });
+var router = express.Router();
+
 router.get('/getusers', function (req, res) {
     User.find().exec(function (err, user) {
         if(err){ }
         res.json(user);
     });
-    console.log("hi world");
 });
+router.get('/getuser/:username', function (req, res) {
+    username = req.params.username;
+    User.findOne({username: username}, function (err, user) {
+        if(err){ res.json({response: "error", error: err})}
+        else if(user){
+            res.json({response: "success", user: user});
+        }
+        else{
+            res.json({response: "error", error: "no user found"});
+        }
+    });
+});
+
 router.post("/signup", function (req, res) {
     //console.log(mailsender.randomString(30));
     var username = req.body.username;
@@ -76,7 +94,12 @@ router.post("/deleteuser", function (req, res) {
         if(err)     res.json({response: "error", error: err});
         else        res.json({response: "success"});
     });
-});
+})
+
+
+// app.use(passport.initialize());
+// var require('../main');
+
 
 //************************************************************************
 //this one redirects every non recognized route to the angular client side

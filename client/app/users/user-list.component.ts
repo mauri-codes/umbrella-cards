@@ -1,4 +1,6 @@
 import { Component }      from '@angular/core';
+import { Router }         from '@angular/router';
+
 import { UserService }    from './user.service';
 import { User }           from './User';
 
@@ -10,11 +12,12 @@ import { User }           from './User';
 })
 
 export class UserListComponent{
-  userService: UserService;
   users: User[];
-  constructor(userService: UserService){
-    this.userService = userService;
+  constructor(private userService: UserService, private router:Router){
     this.userService.getUsers().subscribe(users => {this.users = users; this.convert();}, err => console.log (err) );
+  }
+  onSelect(username: string){
+    this.router.navigate(['/user', username]);
   }
   deleteUser(x:string, index:number){
     this.userService.deleteUser(x)
