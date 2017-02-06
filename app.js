@@ -40,7 +40,6 @@ var apiRoutes = express.Router();
 
 apiRoutes.post('/login', function (req, res) {
     var username = req.body.username;
-    console.log(username);
     var password = req.body.password;
     User.findOne({
         username: username

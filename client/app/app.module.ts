@@ -8,7 +8,8 @@ import { AppComponent }           from './app.component';
 import { WelcomeComponent}        from "./welcome.component";
 import { NotFoundComponent}       from "./not-found.component";
 
-import { UsersModule }           from './users/users.module';
+import { UsersModule }            from './users/users.module';
+import { AuthGuard }              from "./security/auth.guard";
 
 
 
@@ -23,7 +24,8 @@ import { UsersModule }           from './users/users.module';
                   NotFoundComponent,
                   WelcomeComponent,
   ],
-  providers:    [ HttpModule ],
+  providers:    [ HttpModule,
+                  AuthGuard],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

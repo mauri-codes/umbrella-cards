@@ -6,6 +6,7 @@ import { UserListComponent }      from './user-list.component';
 import { UserFormComponent }      from './user-form.component'
 import { UsersComponent }         from './users.component';
 import { UserDetailComponent}     from './user-detail.component';
+import { UserLoginComponent}      from './user-login.component';
 
 import { UserRoutingModule }      from './users-routing.module';
 
@@ -19,7 +20,8 @@ import { UserRoutingModule }      from './users-routing.module';
     UserListComponent,
     UserFormComponent,
     UsersComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    UserLoginComponent
   ]
 })
 export class UsersModule {}

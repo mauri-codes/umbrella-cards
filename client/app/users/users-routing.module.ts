@@ -1,14 +1,19 @@
-import { NgModule }             from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule }               from '@angular/core';
+import { RouterModule, Routes }   from '@angular/router';
 
 import { UserFormComponent }      from './user-form.component';
 import { UsersComponent }         from './users.component';
-import { UserDetailComponent}     from './user-detail.component';
+import { UserDetailComponent }    from './user-detail.component';
+import { UserLoginComponent }     from "./user-login.component";
+
+import { AuthGuard }              from '../security/auth.guard';
+import { NotLogged }              from '../security/not-logged';
 
 const usersRoutes: Routes = [
-  { path: 'sign-up',        component: UserFormComponent},
-  { path: 'users',          component: UsersComponent },
-  { path: 'user/:username', component: UserDetailComponent}
+  { path: 'users',          component: UsersComponent, canActivate: [AuthGuard]},
+  { path: 'user/:username', component: UserDetailComponent, canActivate: [AuthGuard]},
+  { path: 'sign-up',        component: UserFormComponent, canActivate: [NotLogged]},
+  { path: 'login',          component: UserLoginComponent, canActivate: [NotLogged]}
 ];
 
 @NgModule({

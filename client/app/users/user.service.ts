@@ -21,9 +21,6 @@ export class UserService{
   getUser(username: string){
     return this.http.get("/getuser/"+username).map((r:Response) => r.json());
   }
-  getUser2(username: string){
-    return "hi world";
-  }
   newUser(newuser: User):Observable<User>{
     // some examples added options as a third parameter for post request,
     // just in case, here they are
@@ -34,5 +31,9 @@ export class UserService{
   }
   deleteUser(x:string): Observable<User>{
     return this.http.post('/deleteuser', {username: x}).map(( r : Response ) => r.json() );
+  }
+  login(username: string, password: string): Observable<User> {
+    var data = {username: username, password: password};
+    return this.http.post('/login', data).map((r: Response) => r.json());
   }
 }
