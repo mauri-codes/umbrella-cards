@@ -4,7 +4,6 @@ import { Subject }      from 'rxjs/Subject';
 
 @Injectable()
 export class LoginDetailsService {
-
   // Observable string sources
   private loginSource = new Subject<any>();
 

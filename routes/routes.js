@@ -21,7 +21,6 @@ router.get("/", function (req, res, next) {
     //res.json({"his": "history"});
     next();
 });
-var router = express.Router();
 
 router.get('/getusers', function (req, res) {
     User.find().exec(function (err, user) {

@@ -10,6 +10,7 @@ var passport        = require("passport")
 
 //if you add one, dont forget to add app.use at the end
 var routes      = require("./routes/routes");
+var deckRoutes  = require("./routes/deckRoutes");
 var User        = require("./models/user");
 var config      = require("./main");
 
@@ -67,6 +68,7 @@ apiRoutes.get("/dash", passport.authenticate("jwt", {session: false}), function 
 });
 
 app.use(apiRoutes);
+app.use(deckRoutes);
 app.use(routes);
 
 
