@@ -1,1 +1,18 @@
-<h1>hi everyone</h1>
+<div class="hold">
+  <div class="container form-cont">
+    <h3 class="title">New Deck</h3>
+    <form (ngSubmit)="createDeck()" #deckForm="ngForm">
+      <div class="form-group">
+        <label for="deckname">Deck Name: </label>
+        <input type="text" class="form-control" id="deckname" required
+               [(ngModel)]="deckName" name="deckname" #f_deckname="ngModel" pattern="[a-zA-Z0-9 ]*">
+        <div [hidden] = "f_deckname.valid || f_deckname.pristine"
+             class="alert alert-danger" *ngIf="deckname">
+          Deck name can only contain letters, numbers and spaces
+        </div>
+      </div>
+      <button type="submit" class="btn btn-default submit" [disabled]="!deckForm.form.valid">Create</button>
+    </form>
+  </div>
+  {{message}}
+</div>

@@ -12,6 +12,7 @@ var passport        = require("passport")
 var routes      = require("./routes/routes");
 var deckRoutes  = require("./routes/deckRoutes");
 var User        = require("./models/user");
+var Deck        = require("./models/deck");
 var config      = require("./main");
 
 var app = express();

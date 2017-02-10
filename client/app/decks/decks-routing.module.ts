@@ -1,10 +1,10 @@
 import { NgModule }               from '@angular/core';
 import { RouterModule, Routes }   from '@angular/router';
 
-import { DeckFormComponent }      from './deck-form.component';
+import { DeckListComponent }      from './deck-list.component';
 
 const usersRoutes: Routes = [
-  { path: 'new-deck',          component: DeckFormComponent}
+  { path: 'decks',          component: DeckListComponent}
 ];
 
 @NgModule({

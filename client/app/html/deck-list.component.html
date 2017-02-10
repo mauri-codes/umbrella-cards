@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="newdeck" *ngIf="state1=='cancel'" [@addDeck2]="state1"><deck-form></deck-form></div>
+  <a class="btn btn-warning btn-round"
+     [@addDeck]="state1"
+      (click)="deckToggle()">+</a>
+  <div *ngIf="!deckLength">{{message}}</div>
+  <li *ngFor="let deck of decks">
+    {{deck.deckName}}
+  </li>
+</div>
+
+
