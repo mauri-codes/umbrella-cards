@@ -11,7 +11,7 @@ export class LoginDetailsService {
   loginEmitted$ = this.loginSource.asObservable();
 
   // Service message commands
-  emitChange(username: string) {
+  emitChange(username: any) {
     this.loginSource.next(username);
   }
 }

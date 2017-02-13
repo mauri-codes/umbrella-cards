@@ -1,28 +1,32 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" href="#">Project Umbrella</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li><a href="#">Home</a></li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
-          <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a routerLink="/">Welcome</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
-      <li><a routerLink="/users">Users</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right" *ngIf="username==''">
-      <li><a routerLink="/sign-up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right" *ngIf="username!=''">
-      <li><a routerLink="/" (click)="logout()">Log Out</a></li>
-    </ul>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right" *ngIf="username==''">
+        <li><a routerLink="/sign-up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" *ngIf="username!=''">
+        <li><a routerLink="/decks">My Decks</a></li>
+        <li><a routerLink="/users" *ngIf="role==='admin'">Users</a></li>
+        <li class="dropdown" (click)="toggleState()">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Hello {{username}}
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/" (click)="logout()" [@navchild]="state">Log Out</a></li>
+            <li><a href="#" [@navchild]="state2">My Profile</a></li>
+            <li><a href="#" [@navchild]="state3">Page 1-3</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 <div style="height:65px;"></div>

@@ -55,7 +55,7 @@ apiRoutes.post('/login', function (req, res) {
                     var token = jwt.sign(user, config.secret, {
                         expiresIn: 10000
                     });
-                    res.json({success: true, token: 'JWT ' + token});
+                    res.json({success: true, token: 'JWT ' + token, role: user.role});
                 }else{
                     res.json({success: false, message: "incorrect password"});
                 }

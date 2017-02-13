@@ -17,11 +17,11 @@ import { DeckService }          from './deck-service';
   animations: [
     trigger('addDeck',[
       state('add', style({
-        backgroundColor: 'rgb(255, 117, 26)',
+        backgroundColor: 'rgb(68, 204, 0)',
         transform: 'rotate(0deg)'
       })),
       state('cancel', style({
-        backgroundColor: 'red',
+        backgroundColor: 'rgb(255, 153, 51)',
         transform: 'rotate(45deg)'
       })),
       transition('add => cancel', animate('300ms ease-in')),
@@ -45,11 +45,16 @@ import { DeckService }          from './deck-service';
 export class DeckListComponent{
   decks: Deck[];
   state1: string = 'add';
+  newDeck: Deck;
   deckLength: number;
   message = "you dont have decks yet. Try creating one.";
   constructor(private deckService: DeckService){
     this.deckService.getDecks(localStorage.getItem('currentUser'))
       .subscribe(decks => {this.decks = decks; this.deckLength = decks.length}, err => console.log(err));
+  }
+  addNewDeck(deckName:any){
+    this.newDeck = new Deck(deckName, localStorage.getItem('currentUser'),0);
+    this.decks.push(this.newDeck);
   }
   deckToggle(){
     return (this.state1 === 'add') ? this.state1='cancel':this.state1='add';

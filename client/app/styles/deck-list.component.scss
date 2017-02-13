@@ -1,26 +1,46 @@
+$heading-color: rgb(230, 115, 0);
+
 .btn-round{
+  border-color: rgba(204, 255, 153,0);
   border-radius: 30px;
   padding: 0px 16px 0px 16px;
   font-size: 40px;
   font-weight: bold;
-  opacity: 0.9;
   transition: transform 100ms ease-in-out;
+  opacity: 0.9;
+  position:relative;
+  z-index:6;
   &:hover{
-    transform: scale(1.03);
+    transform: scale(1.05);
     opacity:1;
   }
 }
-.ch{
-  background-color: pink;
-  width: 400px;
-  height: 300px;
-  transition: transform 300ms ease-in-out;
+.newdeck{
+  transform-origin: left;
+  display: block;
+  position:relative;
+  z-index:5;
+}
+.panel-default{
+  padding: 0px 0px 0px 0px;
+  margin: 15px 0px 15px 5px;
+  transition: transform 50ms ease-in-out;
   &:hover{
-    transform: translate(200px, 100px) rotate(20deg);
+    transform:  scale(1.03);
   }
 }
-.newdeck{
-  display: block;
-  transform-origin: left;
+.panel-heading{
+  background-color: $heading-color;
+  color: white;
+  font-weight: bold;
+  font-family: "Lohit Tamil Classical";
+  font-size: 17px;
 }
 
+.cont-pan{
+  top: 140px;
+}
+
+.message{
+  margin-top:65px;
+}
