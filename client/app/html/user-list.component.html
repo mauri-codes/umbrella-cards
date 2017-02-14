@@ -9,7 +9,8 @@
       <th>Email</th>
       <th>User since</th>
       <th>Email verified</th>
-      <th>actions</th>
+      <th>Role</th>
+      <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -20,7 +21,12 @@
       <td>{{user.createdAt}}</td>
       <td *ngIf="user.validated">yes</td>
       <td *ngIf="!user.validated">no</td>
-      <td><button class="btn btn-danger" (click)="deleteUser(user.username, index); $event.stopPropagation()">delete</button></td>
+      <td>{{user.role}}</td>
+      <td>
+        <button class="btn btn-danger deleteUser" (click)="deleteUser(user.username, index); $event.stopPropagation()">delete</button>
+        <button class="btn btn-primary makeAdmin" *ngIf="user.role=='client'" (click)="changeRole(index, user.username); $event.stopPropagation()">Make Admin</button>
+        <button class="btn btn-info makeClient" *ngIf="user.role=='admin'" (click)="changeRole(index, user.username); $event.stopPropagation()">Make Client</button>
+      </td>
     </tr>
     </tbody>
   </table>

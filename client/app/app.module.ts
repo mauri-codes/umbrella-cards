@@ -12,6 +12,7 @@ import { DecksModule }            from "./decks/decks.module";
 import { UsersModule }            from './users/users.module';
 import { AuthGuard }              from "./security/auth.guard";
 import { NotLogged }              from "./security/not-logged";
+import { AdminGuard }             from "./security/admin.guard";
 
 
 
@@ -29,7 +30,8 @@ import { NotLogged }              from "./security/not-logged";
   ],
   providers:    [ HttpModule,
                   AuthGuard,
-                  NotLogged],
+                  NotLogged,
+                  AdminGuard],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

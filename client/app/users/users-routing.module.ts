@@ -8,9 +8,10 @@ import { UserLoginComponent }     from "./user-login.component";
 
 import { AuthGuard }              from '../security/auth.guard';
 import { NotLogged }              from '../security/not-logged';
+import { AdminGuard }             from '../security/admin.guard';
 
 const usersRoutes: Routes = [
-  { path: 'users',          component: UsersComponent, canActivate: [AuthGuard]},
+  { path: 'users',          component: UsersComponent, canActivate: [AuthGuard, AdminGuard]},
   { path: 'user/:username', component: UserDetailComponent, canActivate: [AuthGuard]},
   { path: 'sign-up',        component: UserFormComponent, canActivate: [NotLogged]},
   { path: 'login',          component: UserLoginComponent, canActivate: [NotLogged]}

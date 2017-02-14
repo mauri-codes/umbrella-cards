@@ -27,7 +27,7 @@ export class UserLoginComponent {
         localStorage.setItem('currentUser', this.username);
         localStorage.setItem('role', data['role']);
         this.loginService.emitChange({username: this.username, role: data['role']});
-        this.router.navigate(['/users']);
+        this.router.navigate(['/']);
       }else{
         console.log(data['message']);
       }

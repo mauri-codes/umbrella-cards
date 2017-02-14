@@ -88,12 +88,33 @@ router.get("/verify/:code", function (req,res) {
 });
 router.post("/deleteuser", function (req, res) {
     var username = req.body.username;
-    console.log();
     User.remove({username: username}, function (err) {
         if(err)     res.json({response: "error", error: err});
         else        res.json({response: "success"});
     });
-})
+});
+
+router.post("/changerole", function (req, res) {
+    var username = req.body.username;
+    User.findOne({username: username}, function (err, user) {
+        if(err){ res.json({response: 'error', error: err})}
+        else if(user){
+            var roleToChange= "admin";
+            if(user.role === "admin")
+                roleToChange = "client";
+            User.findOneAndUpdate(
+                {username: user.username}, //search for such code amongst users
+                {role: roleToChange}, //change to this if found
+                function (err, userf) {
+                    if(err)                 res.json({success: false, message: err});
+                    else if(userf)          res.json({success: true, role: roleToChange});
+                    else                    res.json({success: false, message: "no such user found"});
+                });
+        }else{
+            res.json({response: "error", error: "no such user found."});
+        }
+    });
+});
 
 
 // app.use(passport.initialize());

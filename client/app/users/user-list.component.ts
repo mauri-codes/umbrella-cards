@@ -19,6 +19,16 @@ export class UserListComponent{
   onSelect(username: string){
     this.router.navigate(['/user', username]);
   }
+  changeRole(index: number, username:string){
+    var user = username;
+    this.userService.changeRole(user)
+      .subscribe(data=>{
+        if(data['success']){
+          this.users[index].role = data['role'];
+        }
+        else{console.log("error");}
+      });
+  }
   deleteUser(x:string, index:number){
     this.userService.deleteUser(x)
       .subscribe(data => {

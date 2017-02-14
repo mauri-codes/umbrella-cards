@@ -55,6 +55,7 @@ export class DeckListComponent{
   addNewDeck(deckName:any){
     this.newDeck = new Deck(deckName, localStorage.getItem('currentUser'),0);
     this.decks.push(this.newDeck);
+    this.deckToggle();
   }
   deckToggle(){
     return (this.state1 === 'add') ? this.state1='cancel':this.state1='add';

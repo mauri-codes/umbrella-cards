@@ -36,4 +36,7 @@ export class UserService{
     var data = {username: username, password: password};
     return this.http.post('/login', data).map((r: Response) => r.json());
   }
+  changeRole(username: string){
+    return this.http.post('/changerole', {username: username}).map((r: Response) => r.json());
+  }
 }
