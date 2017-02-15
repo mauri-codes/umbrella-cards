@@ -21,5 +21,7 @@ export class DeckService{
   newDeck(deckname:string, user: string): Observable<Deck>{
     return this.http.post("/newdeck",{deckname:deckname, owner:user}).map((r:Response)=> r.json());
   }
-
+  getFlashcards(deck: string, user: string){
+    return this.http.post("/getflashcards", {user: user, deck: deck}).map((r:Response) => r.json());
+  }
 }

@@ -5,7 +5,8 @@ var deckSchema = mongoose.Schema({
     id:             { type: String, required: true, unique: true },
     owner:          { type: String, required: true },
     createdAt:      { type: Date, default: Date.now },
-    flaschards:     { type: Number, default: 0 }
+    flaschards:     { type: Number, default: 0 },
+    type:           { type: String, enum:['public', 'private'], default: 'private'}
 });
 
 var Deck = mongoose.model("Deck", deckSchema);

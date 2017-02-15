@@ -31,7 +31,7 @@ router.post("/getdecks", function (req,res) {
         if(!err){
             res.json(decks);
         }else console.log("error");
-    })
+    });
 });
 
 router.post("/newdeck",function (req, res) {
@@ -55,6 +55,35 @@ router.post("/newdeck",function (req, res) {
         }
     });
 
-})
+});
+
+router.post('/getflashcards', function (req, res, next) {
+    var owner =     req.body.user;
+    var deckID =    req.body.deck;
+    Deck.findOne({id: deckID}, function(err, deck){
+        if(!err){
+            if(deck){
+                if(deck.owner == owner || deck.type == 'public'){
+                    next();
+                }else{
+                    res.json({success: false, message: 'private deck'});
+                }
+            }else{
+                res.json({success: false, message: 'no such deck'});
+            }
+        }else res.json({success: false, message: 'server error'});
+    });
+});
+
+router.post("/getflashcards", function (req, res) {
+    var deckID = req.body.deck;
+    Flashcard.find({deck: deckID}).exec(function (err, flashcards) {
+        if(!err){
+            res.json({success: true, flashcards: flashcards});
+        }else{
+            res.json({success: false, message: 'server error'});
+        }
+    });
+});
 
 module.exports = router;
