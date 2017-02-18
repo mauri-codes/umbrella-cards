@@ -1,0 +1,27 @@
+<div class="cont">
+  <div class="add-button" [@button]="addButtonState" (click)="addButtonClick()">
+    +
+  </div>
+  <div class="bar" [@bar]="addButtonState">Add a Flashcard</div>
+  <div class="content" [@content]="addButtonState">
+    <div class="container flash-form">
+      <form (ngSubmit)="addFlashcard()" #flashcardForm="ngForm">
+        <div class="form-group">
+          <label for="front">Front: </label>
+          <textarea name="front" id="front" cols="50" rows="3" class="form-control"
+                  [(ngModel)]="front" #f_front="ngModel" required></textarea>
+          <label for="back">Back: </label>
+          <textarea name="back" id="back" cols="50" rows="3" class="form-control"
+                    [(ngModel)]="back" #f_back="ngModel" required></textarea>
+          <div [hidden] = "(f_back.valid || f_back.pristine) && (f_front.valid || f_front.pristine)"
+               class="alert alert-danger">
+            There is information missing
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default submit" [disabled]="!flashcardForm.form.valid">Create</button>
+      </form>
+      {{message}}
+    </div>
+  </div>
+</div>
+

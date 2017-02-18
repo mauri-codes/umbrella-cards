@@ -23,18 +23,23 @@ export class DeckDetailComponent {
   message: string;
   flashcardsLength: number;
   flashcards: Flashcard[];
+  deck: string;
   ngOnInit():void{
     //+"" with currentUser or guard the route, otherwise the server might get a null value
     this.route.params
-      .switchMap((params: Params) => this.deckService.getFlashcards(params['deck'], localStorage.getItem('currentUser')))
+      .switchMap((params: Params) => this.deckService.getFlashcards(this.deck=params['deck'], localStorage.getItem('currentUser')))
       .subscribe(data => {
           if(data['success']) {
             this.flashcards = data['flashcards'] as Flashcard[];
             this.flashcardsLength = this.flashcards.length;
-            if(this.flashcardsLength == 0){ this.message = "You don't have flashcards yet. Try creating one"}
+            if(this.flashcardsLength == 0){ this.message = "You don't have flashcards here yet. Try creating one."}
           }else{
             this.message = data['message'];
           }
       });
+  }
+  addNewFlash(flashcard: any){
+    var newFlashcard = new Flashcard(flashcard.front, flashcard.back);
+    this.flashcards.push(newFlashcard);
   }
 }

@@ -6,7 +6,7 @@
   <div class="message" *ngIf="!deckLength">{{message}}</div>
   <div class="row cont-pan">
     <div class="col-sm-4" *ngFor="let deck of decks">
-      <div class=" panel panel-default">
+      <div class=" panel panel-default" (click)="toDeckDetail(deck.id)">
         <div class="panel-heading">{{deck.deckName}}</div>
         <div class="panel-body">flashcards: {{deck.flaschards}}</div>
       </div>

@@ -86,4 +86,17 @@ router.post("/getflashcards", function (req, res) {
     });
 });
 
+router.post("/newflashcard", function (req, res) {
+    var deckID =    req.body.deck;
+    var front =     req.body.front;
+    var back =      req.body.back;
+    var newFlashcard = new Flashcard({
+        front: front,
+        back: back,
+        deck: deckID
+    });
+    newFlashcard.save();
+    res.json({success: true, message: "flashcard created successfully."});
+});
+
 module.exports = router;

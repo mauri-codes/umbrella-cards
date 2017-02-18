@@ -48,7 +48,7 @@ export class DeckListComponent{
   newDeck: Deck;
   deckLength: number;
   message = "you dont have decks yet. Try creating one.";
-  constructor(private deckService: DeckService){
+  constructor(private deckService: DeckService, private router: Router){
     this.deckService.getDecks(localStorage.getItem('currentUser'))
       .subscribe(decks => {this.decks = decks; this.deckLength = decks.length}, err => console.log(err));
   }
@@ -56,6 +56,9 @@ export class DeckListComponent{
     this.newDeck = new Deck(deckName, localStorage.getItem('currentUser'),0);
     this.decks.push(this.newDeck);
     this.deckToggle();
+  }
+  toDeckDetail(deck: string){
+    this.router.navigate(['/decks', deck]);
   }
   deckToggle(){
     return (this.state1 === 'add') ? this.state1='cancel':this.state1='add';

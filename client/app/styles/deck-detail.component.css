@@ -1,0 +1,9 @@
+.flashcard {
+  z-index: -1; }
+
+.f_cont {
+  margin-top: 80px; }
+
+.external {
+  position: absolute;
+  z-index: 1; }

@@ -1,6 +1,9 @@
-<div class="container">
+
+<flashcard-form class="external" (Flash)="addNewFlash($event)" [DeckName]="deck" ></flashcard-form>
+
+<div class="container f_cont">
   <div *ngIf="flashcardsLength == 0">{{message}}</div>
-  <div class="panel panel-default" *ngFor="let flashcard of flashcards">
+  <div class="panel panel-default flashcard" *ngFor="let flashcard of flashcards">
     {{flashcard.front}} ---- {{flashcard.back}}
   </div>
 </div>

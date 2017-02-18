@@ -6,6 +6,7 @@ import { DeckRoutingModule }      from './decks-routing.module';
 import { DeckFormComponent }      from './deck-form.component';
 import { DeckListComponent }      from './deck-list.component';
 import { DeckDetailComponent }    from './deck-detail.component';
+import { FlashcardFormComponent}  from './flashcard.form.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { DeckDetailComponent }    from './deck-detail.component';
   declarations: [
     DeckFormComponent,
     DeckListComponent,
-    DeckDetailComponent
+    DeckDetailComponent,
+    FlashcardFormComponent
   ]
 })
 export class DecksModule {}

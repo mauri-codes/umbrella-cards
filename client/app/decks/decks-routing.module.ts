@@ -3,6 +3,7 @@ import { RouterModule, Routes }   from '@angular/router';
 
 import { DeckListComponent }      from './deck-list.component';
 import { DeckDetailComponent }    from './deck-detail.component';
+import { FlashcardFormComponent } from './flashcard.form.component';
 
 import { AuthGuard }              from '../security/auth.guard';
 

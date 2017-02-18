@@ -24,4 +24,7 @@ export class DeckService{
   getFlashcards(deck: string, user: string){
     return this.http.post("/getflashcards", {user: user, deck: deck}).map((r:Response) => r.json());
   }
+  addFlashcard(front: string, back: string, deck: string){
+    return this.http.post("/newflashcard", {deck: deck, front: front, back: back}).map((r:Response) => r.json());
+  }
 }
