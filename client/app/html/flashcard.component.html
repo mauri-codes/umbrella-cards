@@ -1,0 +1,46 @@
+<div class="container fl-container" [@delete]="state2">
+  <div class="row">
+    <div class="fl-left col-sm-6">
+      <div class="fl-content">
+        <label for="front">Front:</label>
+        {{front}}
+      </div>
+    </div>
+    <div class="fl-right col-sm-6">
+      <div class="fl-content">
+        <label for="back">Back:</label>
+        {{back}}
+      </div>
+    </div>
+  </div>
+  <form #flForm>
+    <div class="row" >
+      <div class="fl-left col-sm-6">
+        <div class="form-group animationF"  [@formAnimation]="state" >
+          <textarea class="textarea" id="front" rows="2" #frontbox (keyup)="keyfront(frontbox.value)">{{efront}}</textarea>
+        </div>
+      </div>
+      <div class="fl-right col-sm-6">
+        <div class="form-group animationF"  [@formAnimation]="state" >
+          <textarea class="textarea" id="back" rows="2" #backbox (keyup)="keyback(backbox.value)">{{eback}}</textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="bottom">
+    {{message}}
+    <a class="fl-btn btn btn-danger pull-right fl-delete"
+       *ngIf="state=='normal'" (click)="deleteFl()">        Delete</a>
+    <a class="fl-btn btn btn-primary pull-right fl-edit"
+       *ngIf="state=='normal'" (click)="edit()">            Edit</a>
+    <a class="fl-btn btn btn-danger pull-right fl-cancel-edit"
+       *ngIf="state=='editing'" (click)="cancel(); flForm.reset()">
+                                                            Cancel</a>
+    <a class="fl-btn btn btn-success pull-right fl-confirm-edit"
+       *ngIf="state=='editing'" (click)="setFlashcard()">   Save Changes</a>
+    <a class="fl-btn btn btn-danger pull-right fl-confirm-del"
+       *ngIf="state=='deleting'" (click)="delFlashcard()">  Sure?</a>
+    <a class="fl-btn btn btn-warning pull-right fl-cancel-del"
+       *ngIf="state=='deleting'" (click)="cancel()">        Cancel</a>
+  </div>
+</div>

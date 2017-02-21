@@ -5,7 +5,7 @@
   <div class="bar" [@bar]="addButtonState">Add a Flashcard</div>
   <div class="content" [@content]="addButtonState">
     <div class="container flash-form">
-      <form (ngSubmit)="addFlashcard()" #flashcardForm="ngForm">
+      <form (ngSubmit)="addFlashcard(); flashcardForm.reset()" #flashcardForm="ngForm">
         <div class="form-group">
           <label for="front">Front: </label>
           <textarea name="front" id="front" cols="50" rows="3" class="form-control"
@@ -20,7 +20,7 @@
         </div>
         <button type="submit" class="btn btn-default submit" [disabled]="!flashcardForm.form.valid">Create</button>
       </form>
-      {{message}}
+      <p class="message">{{message}}</p>
     </div>
   </div>
 </div>

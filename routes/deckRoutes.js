@@ -95,8 +95,35 @@ router.post("/newflashcard", function (req, res) {
         back: back,
         deck: deckID
     });
-    newFlashcard.save();
-    res.json({success: true, message: "flashcard created successfully."});
+    newFlashcard.save(function (err, fl) {
+        if(err){
+            res.json({success: false, message: 'theres been a problem'});
+        }else{
+            res.json({success: true, message: "flashcard created successfully.", flashcard: fl});
+        }
+    });
 });
 
+router.post("/setflashcard", function (req, res) {
+    var id =        req.body.id;
+    var front =     req.body.front;
+    var back =      req.body.back;
+
+    Flashcard.findOneAndUpdate(
+        {"_id": id}, //search for such id amongst Flashcards
+        {front: front, back: back}, //change to this if found
+        function (err, flash) {
+            if(err)                 res.json({success: false, message: err});
+            else if(flash)          res.json({success: true, message: "flashcard updated"});
+            else                    res.json({success: false, message: "no such flashcard found"});
+        });
+});
+
+router.post("/delflashcard", function (req, res) {
+    var id = req.body.id;
+    Flashcard.remove({"_id": id}, function (err) {
+        if(err)     res.json({success: false, message: err});
+        else        res.json({success: true});
+    });
+});
 module.exports = router;

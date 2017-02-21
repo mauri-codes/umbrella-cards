@@ -39,7 +39,8 @@ export class DeckDetailComponent {
       });
   }
   addNewFlash(flashcard: any){
-    var newFlashcard = new Flashcard(flashcard.front, flashcard.back);
-    this.flashcards.push(newFlashcard);
+    this.message="";
+    var newFlashcard = new Flashcard(flashcard.front, flashcard.back, flashcard._id+"");
+    this.flashcards.unshift(newFlashcard);
   }
 }

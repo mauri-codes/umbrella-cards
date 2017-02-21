@@ -1,5 +1,5 @@
 import {
-  Component, Input, Output, EventEmitter
+  Component, Input, Output, EventEmitter,
   trigger, state, style,
   transition, animate, keyframes
 }  from '@angular/core';
@@ -54,8 +54,9 @@ import { DeckService }        from './deck-service';
       })),
       state('show', style({
         width: '350px',
-        height: '350px',
-        backgroundColor: 'rgb(240,240,240)'
+        height: '400px',
+        backgroundColor: 'rgb(240,240,240)',
+        opacity: 0.93
       })),
       transition('hidden => show', animate('200ms 300ms ease-in-out')),
       transition('show => hidden', animate('200ms ease-in-out'))
@@ -64,11 +65,11 @@ import { DeckService }        from './deck-service';
 })
 export class FlashcardFormComponent{
   @Input() DeckName:  string;
-  addButtonState:   string;
-  front:            string;
-  back:             string;
-  message:          string;
-  @Output() Flash  =new  EventEmitter<any>();
+  addButtonState:     string;
+  front:              string;
+  back:               string;
+  message:            string;
+  @Output() Flash  =  new  EventEmitter<any>();
   constructor(private deckService: DeckService){
     this.addButtonState = 'hidden';
     this.back = "";
@@ -83,17 +84,21 @@ export class FlashcardFormComponent{
     this.Flash.emit(value);
   }
   addFlashcard(){
-    this.emitValue({front: this.front, back: this.back});
     this.deckService.addFlashcard(this.front, this.back, this.DeckName)
       .subscribe(data => {
         if(data["success"]){
+          this.emitValue(data['flashcard']);
+          this.front = "";
+          this.back = "";
           this.message = data["message"];//deck created successfully
         }else{
           this.message= "there was a problem.";
         }
+        setTimeout(myFunction, 1000, this);
       });
-    this.front = "";
-    this.back = "";
-
   }
+}
+function myFunction(theClass: any){
+  theClass.addButtonClick();
+  theClass.message = "";
 }

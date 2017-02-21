@@ -3,7 +3,9 @@
 
 <div class="container f_cont">
   <div *ngIf="flashcardsLength == 0">{{message}}</div>
-  <div class="panel panel-default flashcard" *ngFor="let flashcard of flashcards">
-    {{flashcard.front}} ---- {{flashcard.back}}
+  <div class="flashcard" *ngFor="let flashcard of flashcards; let index=index">
+    <flashcard [front]="flashcard['front']" [back]="flashcard['back']"
+               [id]="flashcard['_id']" [num]="index"
+               ></flashcard>
   </div>
 </div>

@@ -1,0 +1,39 @@
+$back-color: rgb(249, 249, 249);
+$content-color: rgb(240, 240, 240);
+.fl-container{
+  margin-bottom: 10px;
+  border-top-style: solid;
+  border-color: black;
+}
+.fl-right{
+  background-color: $back-color;
+  border-left-style:solid;
+  border-color: black;
+}
+.fl-left{
+  background-color: $back-color;
+  border-right-style: solid;
+  border-color: black;
+}
+.bottom{
+  background-color: $back-color;
+  height: 43px;
+}
+.fl-content{
+  padding:5px;
+  background-color: $content-color;
+}
+.textarea{
+  width: 100%;
+  resize: none;
+}
+.fl-btn{
+  margin: 1px 10px 0 10px;
+}
+.fl-delete{
+}
+.fl-edit{
+}
+.animationF{
+  overflow: hidden;
+}
